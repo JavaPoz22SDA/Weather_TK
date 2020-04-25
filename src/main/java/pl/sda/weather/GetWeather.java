@@ -5,15 +5,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.Scanner;
 
 public class GetWeather {
     public static void main(String[] args) throws IOException {
+       final String  KLUCZ_API="66bbbddf38facc47e28cb6afc7bccc6b";
         ObjectMapper mapper = new ObjectMapper();
+        WeatherSerive weatherSerive = new WeatherSerive("http://api.weatherstack.com/current",KLUCZ_API);
+        Scanner scanner = new Scanner(System.in);
 
-        String url = "http://api.weatherstack.com/current"+
-                "?access_key=66bbbddf38facc47e28cb6afc7bccc6b&query=Poznan";
+        System.out.print("Podaj miasto:");
+        String city = scanner.nextLine();
+        Weather weather = weatherSerive.getCityWeather(city);
 
-        Weather object=mapper.readValue(new URL(url),Weather.class);
-        System.out.println(object.getCurrent().getTemperature());
+        System.out.println("Temperatura w " + weather.getLocation().getName() + " wynosi: " +weather.getCurrent().getTemperature());
+
     }
 }
