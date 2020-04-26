@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class GetWeather {
@@ -16,8 +17,9 @@ public class GetWeather {
         System.out.print("Podaj miasto:");
         String city = scanner.nextLine();
 
-        Weather weather = weatherSerivice.getCityWeather(city);
-        if(weather != null)
-            System.out.println("Temperatura w " + weather.getLocation().getName() + " wynosi: " + weather.getCurrent().getTemperature());
+        Optional<Weather> weather = weatherSerivice.getCityWeather(city);
+
+        if(weather.isPresent())
+            System.out.println("Temperatura w " + weather.get().getLocation().getName() + " wynosi: " + weather.get().getCurrent().getTemperature());
     }
 }
