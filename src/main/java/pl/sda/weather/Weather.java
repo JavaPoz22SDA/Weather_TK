@@ -11,28 +11,11 @@ public class Weather {
     public Weather() { }
 
     public Weather(Request request, Location location, Current current) {
-        //this.temperature = temperature;
-        //this.city = city;
+
         this.request = request;
         this.location = location;
         this.current=current;
     }
-
-//    public double getTemperature() {
-//        return temperature;
-//    }
-//
-//    public void setTemperature(double temperature) {
-//        this.temperature = temperature;
-//    }
-
-//    public String getCity() {
-//        return city;
-//    }
-//
-//    public void setCity(String city) {
-//        this.city = city;
-//    }
 
     public Request getRequest() {
         return request;

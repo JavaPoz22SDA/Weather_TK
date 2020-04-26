@@ -4,28 +4,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.Scanner;
 
 public class GetWeather {
     public static void main(String[] args) throws IOException {
-        final String KLUCZ_API = "66bbbddf38facc47e28cb6afc7bccc6b";
+        final String API_KEY = "66bbbddf38facc47e28cb6afc7bccc6b";
         ObjectMapper mapper = new ObjectMapper();
-        WeatherSerive weatherSerive = new WeatherSerive("http://api.weatherstack.com/current", KLUCZ_API);
+        WeatherSerivice weatherSerivice = new WeatherSerivice("http://api.weatherstack.com/current", API_KEY);
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Podaj miasto:");
         String city = scanner.nextLine();
 
-        try {
-            Weather weather = weatherSerive.getCityWeather(city);
-
+        Weather weather = weatherSerivice.getCityWeather(city);
+        if(weather != null)
             System.out.println("Temperatura w " + weather.getLocation().getName() + " wynosi: " + weather.getCurrent().getTemperature());
-        } catch (UnrecognizedPropertyException e) {
-            System.out.println("Podane miasto nie istnieje.");
-        }
-
-
     }
 }
