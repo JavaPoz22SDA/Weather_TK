@@ -21,8 +21,7 @@ public class WeatherSerivice {
         Optional<Weather> opt;// = Optional.ofNullable(Weather);
         try {
             weather = mapper.readValue(new URL(finalURL), Weather.class);
-            opt = Optional.of(weather);
-            return opt;
+            return Optional.of(weather);
         } catch (UnrecognizedPropertyException e) {
             ErrorWeatherException errorWeatherException = mapper.readValue(new URL(finalURL), ErrorWeatherException.class);
             System.out.println("Podane miasto nie istnieje. ");
