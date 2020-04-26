@@ -19,7 +19,7 @@ public class GetWeather {
 
         Optional<Weather> weather = weatherSerivice.getCityWeather(city);
 
-        if(weather.isPresent())
-            System.out.println("Temperatura w " + weather.get().getLocation().getName() + " wynosi: " + weather.get().getCurrent().getTemperature());
+        weather.ifPresent(weather1 -> System.out.println("Temperatura w " + weather.get().getLocation().getName() +
+                   " wynosi: " + weather.get().getCurrent().getTemperature()));
     }
 }

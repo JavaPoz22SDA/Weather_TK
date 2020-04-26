@@ -21,7 +21,7 @@ public class WeatherSerivice {
         Optional<Weather> opt;// = Optional.ofNullable(Weather);
         try {
             weather = mapper.readValue(new URL(finalURL), Weather.class);
-            opt = Optional.ofNullable(weather);
+            opt = Optional.of(weather);
             return opt;
         } catch (UnrecognizedPropertyException e) {
             ErrorWeatherException errorWeatherException = mapper.readValue(new URL(finalURL), ErrorWeatherException.class);
